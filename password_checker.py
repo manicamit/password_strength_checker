@@ -1,29 +1,28 @@
 import re
 
-def check_length(password, min_length=8):
-    return len(password) >= min_length 
+def check_length(password, min_len=8):
+    return len(password) >= min_len 
 
-def check_digit(password):
+def check_for_digit(password):
     return re.search(r"\d", password) is not None
 
-def check_uppercase(password):
+def check_for_uppercase(password):
     return re.search(r"[A-Z]", password) is not None
 
-def check_lowercase(password):
+def check_for_lowercase(password):
     return re.search(r"[a-z]", password) is not None
 
-def check_symbol(password):
-    # Expanded symbol set
+def check_for_symbol(password):
     return re.search(r"[ !@#$%^&*()_+=-{}[\]~`<>?,./|\\]", password) is not None
 
 def check_password_strength(password):
     length_valid = check_length(password)
-    digit_valid = check_digit(password)
-    uppercase_valid = check_uppercase(password)
-    lowercase_valid = check_lowercase(password)
-    symbol_valid = check_symbol(password)
+    digit_valid = check_for_digit(password)
+    uppercase_valid = check_for_uppercase(password)
+    lowercase_valid = check_for_lowercase(password)
+    symbol_valid = check_for_symbol(password)
 
-    # Collect the errors for detailed feedback
+    
     errors = []
     if not length_valid:
         errors.append("Password length must be 8 characters.")
